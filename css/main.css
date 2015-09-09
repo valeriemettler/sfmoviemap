@@ -1,3 +1,9 @@
+html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
 html {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -36,4 +42,24 @@ html {
 
 #sort-year {
     margin: 20px 0 0 150px;
+}
+
+/* height: 100% didn't work as google maps api suggested.*/
+#map {
+    height: 400px;
+    width: 400px;
+    margin: 1em;
+}
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 11%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
 }

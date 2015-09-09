@@ -16,6 +16,11 @@
                     <div class="row">
                         <div class="col-lg-12">
                       <!--       <button type="button" id="sort-year">Sort by Year</button> -->
+                            <div id="floating-panel">
+                              <input id="address" type="textbox" value="San Francisco, CA">
+                              <input id="submit" type="button" value="Geocode">
+                            </div>
+                            <div id="map"></div>
                             <div id="x">
                             </div>
                         </div>
@@ -24,6 +29,8 @@
             </div>
             <!-- Main Content Ends -->
         </div>
+        <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"
+        async defer></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
