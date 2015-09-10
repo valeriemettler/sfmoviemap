@@ -1,4 +1,7 @@
 var movies = {};
+var abc = [];
+
+
 
 // var map;
 // function initMap() {
@@ -32,7 +35,7 @@ map.addListener('click', function(event)){
     addMarker(event.latLng);
 }
 
-//adds marker to map and pushes to markers array:
+//adds marker to map and pushes to markers array:  //******* adding markers to an array
 function addMarker(location){
    var marker = new google.maps.Marker({
     position: myLatLng,
@@ -57,34 +60,68 @@ function deleteMarkers() {
 }*/
 
 var map;
+var geocoder;
 function initMap() {
-var myLatLng = {lat: 37.764222, lng: -122.423369};
+//var myLatLng = {lat: 37.764222, lng: -122.423369};
 map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7833, lng: -122.4167},
     zoom: 12
   });
 
 
-var geocoder = new google.maps.Geocoder();
+ geocoder = new google.maps.Geocoder();
 
 //change this to link to address of movie clicked
 document.getElementById('submit').addEventListener('click', function() {
-    geocodeAddress(geocoder, map);
+    geocodeAddress_manual(geocoder, map);
+    console.log(abc);
+
   });
 }
 
-function geocodeAddress(geocoder, resultsMap) {
+
+
+function geocodeAddress_manual(geocoder, resultsMap) {
   var address = document.getElementById('address').value;
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({    //********this is the function that makes a new marker
         map: resultsMap,
-        position: results[0].geometry.location
+        position: results[0].geometry.location,
+        icon: 'img/greenmarker.png'
+
       });
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
+    console.log(marker); //returns: ii {__gm: Object, gm_accessors_: Object, map: yl, closure_uid_31619852: 373, gm_bindings_: Object…}
+  });
+
+ //makes google map responsive when not given a specified width
+ google.maps.event.addDomListener(window, 'load', initialize);
+ google.maps.event.addDomListener(window, "resize", function() {
+ var center = map.getCenter();
+ google.maps.event.trigger(map, "resize");
+ map.setCenter(center);
+ });
+
+}
+
+function geocodeAddress(geocoder, resultsMap, address) {
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({    //********this is the function that makes a new marker
+        map: resultsMap,
+        position: results[0].geometry.location,
+        icon: 'img/greenmarker.png'
+
+      });
+    } else {
+      console.log('Geocode was not successful for the following reason: ' + status);
+    }
+    //console.log(marker); //returns: ii {__gm: Object, gm_accessors_: Object, map: yl, closure_uid_31619852: 373, gm_bindings_: Object…}
   });
 
  //makes google map responsive when not given a specified width
@@ -102,7 +139,7 @@ function geocodeAddress(geocoder, resultsMap) {
 //     $('#x').html("");
 //     for (var i = 0; i < movies.data.length; i++) {
 //         $('#x').append('<div class="card"><div class="name">' + movies.data[i][8]
-//                        + '</div><div class="info"><div class="location"><img src="img/mappin2.png"></img>  '  + movies.data[i][10]
+//                        + '</div><div class="info"><div class="location"><img src="img/redmarker.png"></img>  '  + movies.data[i][10]
 //                        + '</div><div class="year">' + movies.data[i][9]
 //                        + '</div></div></div>');
 //     }
@@ -137,13 +174,16 @@ var display2 = function(m) {
         if (n[0] === null) {
             console.log("movies with null location values");
         } else {
-            x = x + '<div class="card"><div class="name dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><p>' + name + '</p><span class="caret"></span></a><ul class="dropdown-menu">  ';
+            x = x + '<div class="card"><div class="name dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">' + name + '</p><span class="caret"></span></a><ul class="dropdown-menu">  ';
             for (var j = 0; j < n.length; j++) {
                 x = x + '<li><a href="#">' + n[j] + '</a></li>';
             }
         }
         x = x + "</ul></div></div>";
+
     }
+
+
     if (x === "") {x = '<div class="card"><div class="name"><p>No movies found.</p></div></div>';}
     return x;
 }
@@ -170,9 +210,22 @@ $.getJSON(url, function(result) {
     //console.log(b);
     //display(b); //display new movies dictionary locations to display function
     h = display2(movies);
+    console.log(movies);
     $("#x").html(h);
-
+    $('.card').click(function(){
+      var that = this;
+      var movie_name = $(that).find('.movie-name').first().text();
+      console.log(movie_name);
+      console.log(movies[movie_name]);
+      var address = movies[movie_name][0];
+      console.log(address);
+      console.log("xxx");
+      geocodeAddress(geocoder, map, address);
+    });
 });
+
+
+
 
 jQuery('#search').on('input', function() {
   console.log("in filtering fn");
@@ -180,10 +233,10 @@ jQuery('#search').on('input', function() {
    search = search.toLowerCase().replace('-','').replace(' ','');
    console.log(search);
 
-  function toTitleCase(str){
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  }
-  var b = toTitleCase(search);
+  // function toTitleCase(str){
+  //   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  // }
+  // var b = toTitleCase(search);
 
   var movies_filtered = {};
   //fn to iterate over movies dictionary and create movies_filtered dictionary
@@ -208,6 +261,7 @@ jQuery('#search').on('input', function() {
   $("#x").html(h);
 
 });
+
 
 
 // $('#sort-year').click(function(){
