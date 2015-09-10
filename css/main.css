@@ -1,3 +1,9 @@
+/*CSS RESET ALL FILES*/
+/** {
+  margin:0px;
+  padding:0px;
+}*/
+
 html, body {
         height: 100%;
         margin: 0;
@@ -7,10 +13,12 @@ html, body {
 html {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+
 .card {
+    float:left;
     text-align: center;
     border: 1px solid #ccc;
-    box-shadow: 0 10px 19px -2px #949494;
     width: 350px;
     margin: 20px;
 }
@@ -18,15 +26,26 @@ html {
 .name {
     padding: 10px;
     font-size: 30px;
+    height: 150px;
+    position: relative;
+}
+
+.name p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
 }
 
 .info {
-    border-top: 1px solid #ccc;
     padding: 10px;
 }
 
 .location {
     font-size: 15px;
+    padding: 7px 15px;
 }
 
 .year {
@@ -41,7 +60,7 @@ html {
 }
 
 #sort-year {
-    margin: 20px 0 0 150px;
+    margin: 20px 0 0 450px;
 }
 
 /* height: 100% didn't work as google maps api suggested.*/
@@ -63,3 +82,49 @@ html {
   line-height: 30px;
   padding-left: 10px;
 }
+
+.caret {
+    margin-top: 115px;
+
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 15px dashed;
+    border-top: 15px solid \9;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+}
+
+.dropdown-menu {
+    min-width: 350px;
+}
+
+.navbar-default {
+    background-color: #f6f8f9; /*navbar color*/
+    border-color: #e7e7e7;
+}
+
+#logo {
+    height: 100%;
+    margin: 0 2px 3px 0;
+
+}
+
+.navbar-brand > img {
+     display: inline-block;
+}
+
+.input-group {
+    margin-left: 100px;
+}
+
+#empty {
+    padding: 10px;
+    font-size: 30px;
+    height: 150px;
+    position: relative;
+    width: 350px;
+}
+

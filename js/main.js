@@ -1,4 +1,4 @@
-var movies;
+var movies = {};
 
 // var map;
 // function initMap() {
@@ -56,30 +56,29 @@ function deleteMarkers() {
 }
 }*/
 
-//var map;
+var map;
 function initMap() {
 var myLatLng = {lat: 37.764222, lng: -122.423369};
-var map = new google.maps.Map(document.getElementById('map'), {
+map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7833, lng: -122.4167},
     zoom: 12
   });
+
 
 var geocoder = new google.maps.Geocoder();
 
 //change this to link to address of movie clicked
 document.getElementById('submit').addEventListener('click', function() {
     geocodeAddress(geocoder, map);
-    var marker = null;
   });
 }
 
 function geocodeAddress(geocoder, resultsMap) {
-
   var address = document.getElementById('address').value;
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       resultsMap.setCenter(results[0].geometry.location);
-      marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location
       });
@@ -87,6 +86,15 @@ function geocodeAddress(geocoder, resultsMap) {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
+
+ //makes google map responsive when not given a specified width
+ google.maps.event.addDomListener(window, 'load', initialize);
+ google.maps.event.addDomListener(window, "resize", function() {
+ var center = map.getCenter();
+ google.maps.event.trigger(map, "resize");
+ map.setCenter(center);
+ });
+
 }
 
 //original display function with name, year, and location and location pin image:
@@ -129,16 +137,16 @@ var display2 = function(m) {
         if (n[0] === null) {
             console.log("movies with null location values");
         } else {
-            x = x + '<div class="card"><div class="name">' + name + '</div><div class="info">  ';
+            x = x + '<div class="card"><div class="name dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><p>' + name + '</p><span class="caret"></span></a><ul class="dropdown-menu">  ';
             for (var j = 0; j < n.length; j++) {
-                x = x + '<div class="location">' + n[j] + '</div>';
+                x = x + '<li><a href="#">' + n[j] + '</a></li>';
             }
         }
-        x = x + "</div></div>";
+        x = x + "</ul></div></div>";
     }
+    if (x === "") {x = '<div class="card"><div class="name"><p>No movies found.</p></div></div>';}
     return x;
 }
-
 
 var locations = function (a) {
     var output = {};
@@ -157,17 +165,49 @@ var locations = function (a) {
 var url = 'https://data.sfgov.org/api/views/yitu-d5am/rows.json?accessType=DOWNLOAD';
 $.getJSON(url, function(result) {
     //console.log(result);///take from result and put into temp
-    movies = {};
     //movies = result;
-    var b = locations(result);
+    movies = locations(result);
     //console.log(b);
     //display(b); //display new movies dictionary locations to display function
+    h = display2(movies);
+    $("#x").html(h);
 
-    var y = display2(b);
-    $("#x").html(y);
 });
 
+jQuery('#search').on('input', function() {
+  console.log("in filtering fn");
+   var search = jQuery('#search').val();
+   search = search.toLowerCase().replace('-','').replace(' ','');
+   console.log(search);
 
+  function toTitleCase(str){
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+  var b = toTitleCase(search);
+
+  var movies_filtered = {};
+  //fn to iterate over movies dictionary and create movies_filtered dictionary
+    var searchMovies = function (m) {
+      for (var name in m) {
+        if (m.hasOwnProperty(name)) {
+          //name = name.toLowerCase().replace('-','').replace(' ','');
+          //console.log(name);
+          //console.log(search);
+          var currname = name;
+          currname = currname.toLowerCase().replace('-','').replace(' ','');
+          if (currname.indexOf(search) != -1) {
+            movies_filtered[name] = m[name];
+          }
+        }
+      }
+    }
+    searchMovies(movies);
+
+  //movies_filtered = {meow:[]};
+  h = display2(movies_filtered);
+  $("#x").html(h);
+
+});
 
 
 // $('#sort-year').click(function(){
