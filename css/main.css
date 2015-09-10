@@ -19,13 +19,13 @@ html {
     float:left;
     text-align: center;
     border: 1px solid #ccc;
-    width: 350px;
+    width: 200px;
     margin: 20px;
 }
 
 .name {
     padding: 10px;
-    font-size: 30px;
+    font-size: 15px;
     height: 150px;
     position: relative;
 }
@@ -65,11 +65,12 @@ html {
 
 /* height: 100% didn't work as google maps api suggested.*/
 #map {
-    height: 400px;
+    height: 450px;
     width: 400px;
-    margin: 1em;
+    margin: 20px 20px 0 0;
+
 }
-#floating-panel {
+/*#floating-panel {
   position: absolute;
   top: 10px;
   left: 11%;
@@ -81,6 +82,11 @@ html {
   font-family: 'Roboto','sans-serif';
   line-height: 30px;
   padding-left: 10px;
+}
+*/
+
+#floating-panel {
+  display: none;
 }
 
 .caret {
@@ -117,14 +123,20 @@ html {
 }
 
 .input-group {
-    margin-left: 100px;
+   width: 400px;
+
 }
 
-#empty {
-    padding: 10px;
-    font-size: 30px;
-    height: 150px;
-    position: relative;
-    width: 350px;
+.fixed {
+        position: fixed;
+        right: 0;
+        width: 500px;
+
 }
+
+.scrollit {
+        /*float: left;*/
+
+}
+
 

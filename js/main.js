@@ -174,7 +174,7 @@ var display2 = function(m) {
         if (n[0] === null) {
             console.log("movies with null location values");
         } else {
-            x = x + '<div class="card"><div class="name dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">' + name + '</p><span class="caret"></span></a><ul class="dropdown-menu">  ';
+            x = x + '<div class="card"><div class="name dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">' + name + '</p></a><ul class="dropdown-menu">  ';
             for (var j = 0; j < n.length; j++) {
                 x = x + '<li><a href="#">' + n[j] + '</a></li>';
             }
