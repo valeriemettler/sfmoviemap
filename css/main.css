@@ -1,9 +1,3 @@
-/*CSS RESET ALL FILES*/
-/** {
-  margin:0px;
-  padding:0px;
-}*/
-
 html, body {
         height: 100%;
         margin: 0;
@@ -14,7 +8,23 @@ html {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* Navbar Styles */
+.navbar-default {
+    background-color: #f6f8f9; /*navbar color*/
+    border-color: #e7e7e7;
+}
 
+#logo {
+    height: 100%;
+    margin: 0 2px 3px 0;
+
+}
+
+.navbar-brand > img {
+     display: inline-block;
+}
+
+/* Movie Card Styles */
 .card {
     float:left;
     text-align: center;
@@ -48,95 +58,36 @@ html {
     padding: 7px 15px;
 }
 
-.year {
-    font-size: 23px;
-    color: #ccc;
+/* Search box Styles */
+.input-group {
+   width: 400px;
+   margin-top: 20px;
+
 }
 
-.location img {
-    height: 20px;
-    width: 10px;
-    margin-top: -10px;
-}
-
-#sort-year {
-    margin: 20px 0 0 450px;
-}
-
-/* height: 100% didn't work as google maps api suggested.*/
+/* Map Styles */
 #map {
     height: 450px;
     width: 400px;
     margin: 20px 20px 0 0;
-
 }
-/*#floating-panel {
-  position: absolute;
-  top: 10px;
-  left: 11%;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: 'Roboto','sans-serif';
-  line-height: 30px;
-  padding-left: 10px;
-}
-*/
 
 #floating-panel {
   display: none;
 }
 
-.caret {
-    margin-top: 115px;
-
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 2px;
-    vertical-align: middle;
-    border-top: 15px dashed;
-    border-top: 15px solid \9;
-    border-right: 15px solid transparent;
-    border-left: 15px solid transparent;
-}
-
+/* Dropdown Menu Styles */
 .dropdown-menu {
     min-width: 350px;
 }
 
-.navbar-default {
-    background-color: #f6f8f9; /*navbar color*/
-    border-color: #e7e7e7;
-}
-
-#logo {
-    height: 100%;
-    margin: 0 2px 3px 0;
-
-}
-
-.navbar-brand > img {
-     display: inline-block;
-}
-
-.input-group {
-   width: 400px;
-
-}
-
+/* Column Styles */
 .fixed {
         position: fixed;
         right: 0;
         width: 500px;
-
 }
 
 .scrollit {
-        /*float: left;*/
-
+        width: 775px;
 }
-
-

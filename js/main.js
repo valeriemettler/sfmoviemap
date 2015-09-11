@@ -1,68 +1,10 @@
 var movies = {};
 var abc = [];
 
-
-
-// var map;
-// function initMap() {
-// var myLatLng = {lat: 37.764222, lng: -122.423369};
-// map = new google.maps.Map(document.getElementById('map'), {
-//     center: {lat: 37.7833, lng: -122.4167},
-//     zoom: 12
-//   });
-//    var marker = new google.maps.Marker({
-//     position: myLatLng,
-//     map: map,
-    //title: 'SF Movie Map'
-//   });
-// }
-
-/*
-var map;
-var markers = [];
-
-function initMap() {
-
-var myLatLng = {lat: 37.764222, lng: -122.423369};
-
-map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 37.7833, lng: -122.4167},
-    zoom: 12
-  });
-
-//event listener calls addMarker when map is clicked:
-map.addListener('click', function(event)){
-    addMarker(event.latLng);
-}
-
-//adds marker to map and pushes to markers array:  //******* adding markers to an array
-function addMarker(location){
-   var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    //title: 'SF Movie Map'
-  });
- markers.push(marker);
-}
-
-//sets the map on all markers in the array??
-function setMapOnAll(map){
-    for(var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
-    }
-}
-
-//deletes all markers in the array
-function deleteMarkers() {
-    clearMarkers();
-    markers = [];
-}
-}*/
-
 var map;
 var geocoder;
+
 function initMap() {
-//var myLatLng = {lat: 37.764222, lng: -122.423369};
 map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.7833, lng: -122.4167},
     zoom: 12
@@ -71,7 +13,6 @@ map = new google.maps.Map(document.getElementById('map'), {
 
  geocoder = new google.maps.Geocoder();
 
-//change this to link to address of movie clicked
 document.getElementById('submit').addEventListener('click', function() {
     geocodeAddress_manual(geocoder, map);
     console.log(abc);
@@ -79,14 +20,12 @@ document.getElementById('submit').addEventListener('click', function() {
   });
 }
 
-
-
 function geocodeAddress_manual(geocoder, resultsMap) {
   var address = document.getElementById('address').value;
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({    //********this is the function that makes a new marker
+      var marker = new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location,
         icon: 'img/greenmarker.png'
@@ -95,24 +34,16 @@ function geocodeAddress_manual(geocoder, resultsMap) {
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
-    console.log(marker); //returns: ii {__gm: Object, gm_accessors_: Object, map: yl, closure_uid_31619852: 373, gm_bindings_: Object…}
+
+
   });
-
- //makes google map responsive when not given a specified width
- google.maps.event.addDomListener(window, 'load', initialize);
- google.maps.event.addDomListener(window, "resize", function() {
- var center = map.getCenter();
- google.maps.event.trigger(map, "resize");
- map.setCenter(center);
- });
-
 }
 
 function geocodeAddress(geocoder, resultsMap, address) {
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({    //********this is the function that makes a new marker
+      var marker = new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location,
         icon: 'img/greenmarker.png'
@@ -121,7 +52,6 @@ function geocodeAddress(geocoder, resultsMap, address) {
     } else {
       console.log('Geocode was not successful for the following reason: ' + status);
     }
-    //console.log(marker); //returns: ii {__gm: Object, gm_accessors_: Object, map: yl, closure_uid_31619852: 373, gm_bindings_: Object…}
   });
 
  //makes google map responsive when not given a specified width
@@ -134,37 +64,6 @@ function geocodeAddress(geocoder, resultsMap, address) {
 
 }
 
-//original display function with name, year, and location and location pin image:
-// var display = function () {
-//     $('#x').html("");
-//     for (var i = 0; i < movies.data.length; i++) {
-//         $('#x').append('<div class="card"><div class="name">' + movies.data[i][8]
-//                        + '</div><div class="info"><div class="location"><img src="img/redmarker.png"></img>  '  + movies.data[i][10]
-//                        + '</div><div class="year">' + movies.data[i][9]
-//                        + '</div></div></div>');
-//     }
-// };
-
-//displays movies with null locations:
-// var display2 = function (m) {
-//     var x = "";
-//       for (var name in m) {
-//         if (m.hasOwnProperty(name)){
-
-//         x = x + '<div class="card"><div class="name">' + name
-//         + '</div><div class="info">  ';
-
-//         var n = m[name];
-//         for (var j = 0; j < n.length; j++) {
-//             x = x + '<div class="location">' + n[j]  + '</div>';
-//         }
-//         x = x + "</div></div>";
-//       }
-//      }
-//    return x;
-// };
-
-//displays movies without null locations, but has duplicate locations per movie
 var display2 = function(m) {
     var x = "";
     for (var name in m) {
@@ -172,15 +71,16 @@ var display2 = function(m) {
             var n = m[name];
         }
         if (n[0] === null) {
-            console.log("movies with null location values");
+          console.log("movies with null location values");
         } else {
-            x = x + '<div class="card"><div class="name dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">' + name + '</p></a><ul class="dropdown-menu">  ';
+            x = x + '<div class="card"><div class="name dropdown">' +
+            '<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">'
+            + name + '</p></a><ul class="dropdown-menu">  ';
             for (var j = 0; j < n.length; j++) {
                 x = x + '<li><a href="#">' + n[j] + '</a></li>';
             }
         }
         x = x + "</ul></div></div>";
-
     }
 
 
@@ -201,51 +101,28 @@ var locations = function (a) {
 };
 
 
-
 var url = 'https://data.sfgov.org/api/views/yitu-d5am/rows.json?accessType=DOWNLOAD';
 $.getJSON(url, function(result) {
-    //console.log(result);///take from result and put into temp
-    //movies = result;
     movies = locations(result);
-    //console.log(b);
-    //display(b); //display new movies dictionary locations to display function
     h = display2(movies);
-    console.log(movies);
     $("#x").html(h);
     $('.card').click(function(){
       var that = this;
       var movie_name = $(that).find('.movie-name').first().text();
-      console.log(movie_name);
-      console.log(movies[movie_name]);
       var address = movies[movie_name][0];
-      console.log(address);
-      console.log("xxx");
       geocodeAddress(geocoder, map, address);
     });
 });
 
 
-
-
 jQuery('#search').on('input', function() {
-  console.log("in filtering fn");
    var search = jQuery('#search').val();
    search = search.toLowerCase().replace('-','').replace(' ','');
-   console.log(search);
-
-  // function toTitleCase(str){
-  //   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  // }
-  // var b = toTitleCase(search);
-
   var movies_filtered = {};
-  //fn to iterate over movies dictionary and create movies_filtered dictionary
+
     var searchMovies = function (m) {
       for (var name in m) {
         if (m.hasOwnProperty(name)) {
-          //name = name.toLowerCase().replace('-','').replace(' ','');
-          //console.log(name);
-          //console.log(search);
           var currname = name;
           currname = currname.toLowerCase().replace('-','').replace(' ','');
           if (currname.indexOf(search) != -1) {
@@ -253,29 +130,12 @@ jQuery('#search').on('input', function() {
           }
         }
       }
+
     }
     searchMovies(movies);
 
-  //movies_filtered = {meow:[]};
   h = display2(movies_filtered);
   $("#x").html(h);
 
 });
-
-
-
-// $('#sort-year').click(function(){
-//     movies.data.sort(function (a,b) {
-//         var j = parseInt(a[9]);
-//         var k = parseInt(b[9]);
-//         if (j < k) {return -1};
-//         if (j > k) {return 1};
-//         if (j === k) {return 0};
-//     });
-//     display();
-// });
-
-
-
-
 
