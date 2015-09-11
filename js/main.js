@@ -73,7 +73,10 @@ var display2 = function(m) {
         if (n[0] === null) {
           console.log("movies with null location values");
         } else {
-            x = x + '<div class="card"><div class="name dropdown">' +
+            x = x + '<div class="card">' +
+            '<img src="img/posters/' + name + '.jpg" alt="'+ name +'" />' +
+            '<div class="name dropdown">' +
+
             '<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">'
             + name + '</p></a><ul class="dropdown-menu">  ';
             for (var j = 0; j < n.length; j++) {
@@ -109,7 +112,9 @@ $.getJSON(url, function(result) {
     $('.card').click(function(){
       var that = this;
       var movie_name = $(that).find('.movie-name').first().text();
+      console.log(movie_name);
       var address = movies[movie_name][0];
+
       geocodeAddress(geocoder, map, address);
     });
 });

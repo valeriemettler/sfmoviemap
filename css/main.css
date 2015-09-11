@@ -29,8 +29,19 @@ html {
     float:left;
     text-align: center;
     border: 1px solid #ccc;
-    width: 200px;
+    width: 171px;
+    height: 245px;
     margin: 20px;
+}
+
+.card img {
+  width: 150px;
+  height: 225px;
+  padding-top: 18px;
+}
+
+.movie-name {
+  display: none;
 }
 
 .name {
