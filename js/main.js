@@ -1,5 +1,6 @@
 var movies = {};
 var abc = [];
+var oldmarker;
 
 var map;
 var geocoder;
@@ -49,6 +50,10 @@ function geocodeAddress(geocoder, resultsMap, address) {
         icon: 'img/greenmarker.png'
 
       });
+      if (typeof oldmarker !== "undefined") {
+      oldmarker.setMap(null);
+    }
+      oldmarker = marker;
     } else {
       console.log('Geocode was not successful for the following reason: ' + status);
     }
@@ -69,9 +74,9 @@ var display2 = function(m) {
     for (var name in m) {
         if (m.hasOwnProperty(name)) {
             var n = m[name];
-        }
+
         if (n[0] === null) {
-          console.log("movies with null location values");
+          //console.log("movies with null location values");
         } else {
             x = x + '<div class="card">' +
             '<img src="img/posters/' + name + '.jpg" alt="'+ name +'" />' +
@@ -81,10 +86,14 @@ var display2 = function(m) {
             + name + '</p></a><ul class="dropdown-menu">  ';
             for (var j = 0; j < n.length; j++) {
                 x = x + '<li><a href="#">' + n[j] + '</a></li>';
+                //console.log(n[j]);
             }
         }
+        //console.log(name);
         x = x + "</ul></div></div>";
+      }
     }
+
 
 
     if (x === "") {x = '<div class="card"><div class="name"><p>No movies found.</p></div></div>';}
@@ -109,15 +118,19 @@ $.getJSON(url, function(result) {
     movies = locations(result);
     h = display2(movies);
     $("#x").html(h);
-    $('.card').click(function(){
+    $('#x').on('click', '.card', function(e){
+      e.stopPropagation();
+      //console.log("click handler");
       var that = this;
       var movie_name = $(that).find('.movie-name').first().text();
-      console.log(movie_name);
-      var address = movies[movie_name][0];
+      //console.log(movie_name);
+      var address = movies[movie_name][0] + ", San Francisco, CA";
+      //console.log(address);
 
       geocodeAddress(geocoder, map, address);
     });
 });
+
 
 
 jQuery('#search').on('input', function() {
