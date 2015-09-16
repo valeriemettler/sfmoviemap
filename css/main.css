@@ -100,28 +100,27 @@ div.col-sm-8 div {
 
 @media screen and (max-width: 1200px) {
     #section1 {
-        margin-left: 190px;
+        margin-left: 180px;
     }
 
     #map {
-        max-width: 200px;
+        max-width: 190px;
     }
 
-.card {
-    float: left;
-    text-align: center;
-    border: 1px solid #ccc;
-    width: 121px;
-    height: 155px;
-    margin: 20px;
-}
+    .card {
+        width: 106px;
+        height: 143px;
+        margin: 20px;
+    }
+
     .card img {
-    width: 102px;
-    height: 147px;
-    padding-top: 9px;
-}
+        width: 91px;
+        height: 133px;
+        padding-top: 9px;
+    }
+
     .input-group {
-        width: 200px;
+        width: 190px;
     };
 
 }
