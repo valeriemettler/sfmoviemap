@@ -68,7 +68,7 @@ function geocodeAddress(geocoder, resultsMap, address) {
         map.setCenter(center);
     });
 }
-
+$(document).ready(function() {
 var display2 = function(m) {
     var x = "";
     for (var name in m) {
@@ -141,4 +141,5 @@ jQuery('#search').on('input', function() {
     searchMovies(movies);
     h = display2(movies_filtered);
     $("#x").html(h);
+});
 });

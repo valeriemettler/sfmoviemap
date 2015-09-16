@@ -10,51 +10,54 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body>
-    <div>
-        <!-- Navbar -->
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"><img id="logo" src="img/movie-icon.png" alt=""><span id="title">SF Movie Mapper</span></a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span></span>Sign Up</a></li>
-                        <li><a href="#"><span></span>Login</a></li>
-                    </ul>
-                </div>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img id="logo" src="img/movie-icon.png" alt=""><span id="title">SF Movie Mapper</span></a>
             </div>
-        </nav>
-        <!-- Navbar Ends -->
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span></span>Sign Up</a></li>
+                    <li><a href="#"><span></span>Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar Ends -->
 
-         <!-- Main Content -->
-        <div class="container">
-            <div class="row">
-
-                 <!-- Search Box and Map -->
-                <div class="col-lg-3 fixed">
+    <div class="container">
+        <div class="row">
+            <!-- Fixed Search Box and Map -->
+            <nav class="col-sm-4" id="myScrollspy">
+                <ul class="nav nav-pills">
                     <div class="input-group">
                         <input type="text" id="search" class="form-control" placeholder="Search Movies" aria-describedby="basic-addon1">
                     </div>
-                    <div id="map"></div>
-                </div>
-                <!-- Search Box and Map Ends -->
-
-                <div class="col-lg-9 scrollit">
+                    <div id="map-container">
+                        <div id="map"></div>
+                    </div>
+                </ul>
+            </nav>
+            <!-- End Fixed Search Box and Map -->
+            <!-- Scrolling Movies -->
+            <div class="col-sm-8">
+                <div id="section1">
                     <div id="x">
                     </div>
                 </div>
             </div>
+            <!-- End Scrolling Movies -->
         </div>
-        <!-- Main Content Ends -->
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap" async defer></script>
     <script src="js/jquery.min.js"></script>

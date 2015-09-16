@@ -1,32 +1,41 @@
-html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-html {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+body {
+    position: relative;
 }
 
-/* Navbar Styles */
-.navbar-default {
-    background-color: #f6f8f9; /*navbar color*/
-    border-color: #e7e7e7;
+ul.nav-pills {
+    top: 0px;
+    position: fixed;
+    z-index: 5;
 }
 
-#logo {
-    height: 100%;
-    margin: 0 2px 3px 0;
-
+div.col-sm-8 div {
+    /*height: 150px;*/
+    /*font-size: 18px;*/;
 }
 
-.navbar-brand > img {
-     display: inline-block;
+#x {
+    height: 250px;
+    margin-top: 45px;
+}
+
+/* Map Styles */
+#map {
+    height: 575px;
+    width: 350px;
+    margin: 20px 20px 0 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Search box Styles */
+.input-group {
+    width: 350px;
+    margin-top: 52px;
 }
 
 /* Movie Card Styles */
 .card {
-    float:left;
+    float: left;
     text-align: center;
     border: 1px solid #ccc;
     width: 171px;
@@ -35,13 +44,13 @@ html {
 }
 
 .card img {
-  width: 150px;
-  height: 225px;
-  padding-top: 18px;
+    width: 150px;
+    height: 225px;
+    padding-top: 18px;
 }
 
 .movie-name {
-  display: none;
+    display: none;
 }
 
 .name {
@@ -57,7 +66,8 @@ html {
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%) }
+    transform: translate(-50%, -50%);
+}
 }
 
 .info {
@@ -69,36 +79,117 @@ html {
     padding: 7px 15px;
 }
 
-/* Search box Styles */
-.input-group {
-   width: 400px;
-   margin-top: 20px;
-
+/* Navbar Styles */
+.navbar-default {
+    background-color: #f6f8f9;
+ /*navbar color*/
+    border-color: #e7e7e7;
 }
 
-/* Map Styles */
-#map {
-    height: 450px;
-    width: 400px;
-    margin: 20px 20px 0 0;
+#logo {
+    height: 100%;
+    margin: 0 2px 3px 0;
 }
 
-#floating-panel {
-  display: none;
+.navbar-brand > img {
+    display: inline-block;
 }
 
-/* Dropdown Menu Styles */
-.dropdown-menu {
-    min-width: 350px;
+.container .navbar-header,
+.container .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
 }
 
-/* Column Styles */
-.fixed {
-        position: fixed;
-        right: 0;
-        width: 500px;
+/* Undo Bootstrap Navbar Dropdowns and Collapse */
+
+/* Always float the navbar header */
+.navbar-header {
+    float: left;
 }
 
-.scrollit {
-        width: 775px;
+/* Undo the collapsing navbar */
+.navbar-collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+}
+
+.navbar-toggle {
+    display: none;
+}
+
+.navbar-collapse {
+    border-top: 0;
+}
+
+.navbar-brand {
+    margin-left: -3px;
+}
+
+/* Always apply the floated nav */
+.navbar-nav {
+    float: left;
+    margin: 0;
+}
+
+.navbar-nav > li {
+    float: left;
+}
+
+.navbar-nav > li > a {
+    padding: 15px;
+}
+
+/* Redeclare since we override the float above */
+.navbar-nav.navbar-right {
+    float: right;
+}
+
+/* Undo custom dropdowns */
+.navbar .navbar-nav .open .dropdown-menu {
+    position: absolute;
+    float: left;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-width: 0 1px 1px;
+    border-radius: 0 0 4px 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #333;
+}
+
+.navbar .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > li > a:focus,
+.navbar .navbar-nav .open .dropdown-menu > .active > a,
+.navbar .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #fff !important;
+    background-color: #428bca !important;
+}
+
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a,
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #999 !important;
+    background-color: transparent !important;
+}
+
+@media screen and (max-width: 1200px) {
+    #section1 {
+        margin-left: 190px;
+    }
+
+    #map {
+        max-width: 200px;
+    }
+
+    .input-group {
+        width: 200px;
+    };
 }
