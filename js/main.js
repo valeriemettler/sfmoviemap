@@ -91,7 +91,7 @@ var display2 = function(m) {
                     '<img src="img/posters/' + name + '.jpg" alt="' + name + '" />' +
                     '<div class="name dropdown">' +
 
-                    '<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">' + name + '</p></a><ul class="dropdown-menu">  ';
+                    '<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">' + name + '</p></a><ul class="dropdown-menu">';
                 for (var j = 0; j < n.length; j++) {
                     x = x + '<li><a href="#">' + n[j] + '</a></li>';
                 }
