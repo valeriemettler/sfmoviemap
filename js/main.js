@@ -69,6 +69,16 @@ function geocodeAddress(geocoder, resultsMap, address) {
     });
 }
 $(document).ready(function() {
+
+// var imgError = function(image) {
+//     image.onerror = "";
+//     image.src = "/img/posters/noposter.jpg";
+//     return true;
+// }
+// imgError();
+// onerror="myFunction();"
+
+
 var display2 = function(m) {
     var x = "";
     for (var name in m) {
@@ -95,6 +105,8 @@ var display2 = function(m) {
     }
     return x;
 }
+
+
 
 var locations = function(a) {
     var output = {};

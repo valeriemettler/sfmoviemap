@@ -2,34 +2,35 @@ body {
     position: relative;
 }
 
+/* Fixed Left Column */
 ul.nav-pills {
     top: 0px;
     position: fixed;
     z-index: 5;
 }
 
-div.col-sm-8 div {
-    /*height: 150px;*/
-    /*font-size: 18px;*/;
-}
-
+/* Scrolling Right Column */
 #x {
     height: 250px;
     margin-top: 45px;
 }
 
+#section1 {
+    margin-left: 180px;
+}
+
 /* Map Styles */
 #map {
     height: 575px;
-    width: 350px;
+    width: 190px;
     margin: 20px 20px 0 0;
     overflow: hidden;
     position: relative;
 }
 
-/* Search box Styles */
+/* Search Box Styles */
 .input-group {
-    width: 350px;
+    width: 190px;
     margin-top: 52px;
 }
 
@@ -38,15 +39,15 @@ div.col-sm-8 div {
     float: left;
     text-align: center;
     border: 1px solid #ccc;
-    width: 171px;
-    height: 245px;
+    width: 106px;
+    height: 143px;
     margin: 20px;
 }
 
 .card img {
-    width: 150px;
-    height: 225px;
-    padding-top: 18px;
+    width: 91px;
+    height: 133px;
+    padding-top: 9px;
 }
 
 .movie-name {
@@ -58,6 +59,7 @@ div.col-sm-8 div {
     font-size: 15px;
     height: 150px;
     position: relative;
+    z-index: 5;
 }
 
 .name p {
@@ -67,7 +69,6 @@ div.col-sm-8 div {
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-}
 }
 
 .info {
@@ -80,9 +81,9 @@ div.col-sm-8 div {
 }
 
 /* Navbar Styles */
+/* Navbar Color */
 .navbar-default {
     background-color: #f6f8f9;
- /*navbar color*/
     border-color: #e7e7e7;
 }
 
@@ -95,32 +96,49 @@ div.col-sm-8 div {
     display: inline-block;
 }
 
-
-
-
-@media screen and (max-width: 1200px) {
-    #section1 {
-        margin-left: 180px;
-    }
+/* Mobile First Design */
+@media screen and (min-width: 768px) {
 
     #map {
-        max-width: 190px;
+        width: 425px;
+    }
+
+    .input-group {
+        width: 425px;
     }
 
     .card {
-        width: 106px;
-        height: 143px;
+        width: 150px;
+        height: 232px;
         margin: 20px;
     }
 
     .card img {
-        width: 91px;
-        height: 133px;
-        padding-top: 9px;
+        width: 132px;
+        height: 220px;
+        padding-top: 10px;
+    };
+}
+
+@media screen and (min-width: 1000px) {
+
+    #map {
+        width: 475px;
     }
 
     .input-group {
-        width: 190px;
+        width: 475px;
     };
-
 }
+
+@media screen and (min-width: 1200px) {
+
+    #map {
+        width: 520px;
+    }
+
+    .input-group {
+        width: 520px;
+    };
+}
+
