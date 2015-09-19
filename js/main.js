@@ -68,44 +68,6 @@ function geocodeAddress(geocoder, resultsMap, address) {
         map.setCenter(center);
     });
 }
-$(document).ready(function() {
-
-// var imgError = function(image) {
-//     image.onerror = "";
-//     image.src = "/img/posters/noposter.jpg";
-//     return true;
-// }
-// imgError();
-// onerror="myFunction();"
-
-
-var display2 = function(m) {
-    var x = "";
-    for (var name in m) {
-        if (m.hasOwnProperty(name)) {
-            var n = m[name];
-
-            if (n[0] === null) {
-            } else {
-                x = x + '<div class="card">' +
-                    '<img src="img/posters/' + name + '.jpg" alt="' + name + '" />' +
-                    '<div class="name dropdown">' +
-
-                    '<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">' + name + '</p></a><ul class="dropdown-menu">';
-                for (var j = 0; j < n.length; j++) {
-                    x = x + '<li><a href="#">' + n[j] + '</a></li>';
-                }
-            }
-            x = x + "</ul></div></div>";
-        }
-    }
-
-    if (x === "") {
-        x = '<div class="card"><div class="name"><p>No movies found.</p></div></div>';
-    }
-    return x;
-}
-
 
 
 var locations = function(a) {
@@ -120,38 +82,117 @@ var locations = function(a) {
     return output;
 };
 
-var url = 'https://data.sfgov.org/api/views/yitu-d5am/rows.json?accessType=DOWNLOAD';
-$.getJSON(url, function(result) {
-    movies = locations(result);
-    h = display2(movies);
-    $("#x").html(h);
-    $('#x').on('click', '.card', function(e) {
-        e.stopPropagation();
-        var that = this;
-        var movie_name = $(that).find('.movie-name').first().text();
-        var address = movies[movie_name][0] + ", San Francisco, CA";
-        geocodeAddress(geocoder, map, address);
+var display2 = function(m) {
+    var x = "";
+    for (var name in m) {
+        if (m.hasOwnProperty(name)) {
+            var n = m[name];
+
+            if (n[0] === null) {
+            } else {
+                x = x + '<div class="card">' +
+                    '<img src="img/posters/' + name + '.jpg" alt="' + name + '" title="' + name + '" />' +
+                    '<div class="name dropdown">' +
+
+                    '<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">'
+                    + name + '</p></a><ul class="dropdown-menu">';
+
+                for (var j = 0; j < n.length; j++) {
+                    x = x + '<li><a href="#">' + n[j] + '</a></li>';
+                }
+            }
+            x = x + "</ul></div></div>";
+        }
+    }
+
+    if (x === "") {
+        x = '<div class="card"><div class="name"><p>No movies found.</p></div></div>';
+    }
+    return x;
+}
+
+var display2 = function(m) {
+    var x = "";
+    for (var name in m) {
+        if (m.hasOwnProperty(name)) {
+            var n = m[name];
+
+            if (n[0] === null) {
+            } else {
+                x = x + '<div class="card">' +
+                    '<img src="img/posters/' + name + '.jpg" alt="' + name + '" title="' + name + '" />' +
+                    '<div class="name dropdown">' +
+
+                    '<a href="#" data-toggle="dropdown" class="dropdown-toggle"><p class="movie-name">'
+                    + name + '</p></a><ul class="dropdown-menu">';
+
+                for (var j = 0; j < n.length; j++) {
+                    x = x + '<li><a href="#">' + n[j] + '</a></li>';
+                }
+            }
+            x = x + "</ul></div></div>";
+        }
+    }
+
+    if (x === "") {
+        x = '<div class="card"><div class="name"><p>No movies found.</p></div></div>';
+    }
+    return x;
+}
+
+var getData = function () {
+    var url = 'https://data.sfgov.org/api/views/yitu-d5am/rows.json?accessType=DOWNLOAD';
+    $.getJSON(url, function(result) {
+        movies = locations(result);
+        h = display2(movies);
+        $("#x").html(h);
+        $('#x').on('click', '.card', function(e) {
+            e.stopPropagation();
+            var that = this;
+            var movie_name = $(that).find('.movie-name').first().text();
+            var address = movies[movie_name][0] + ", San Francisco, CA";
+            geocodeAddress(geocoder, map, address);
+        });
     });
-});
+}
 
-jQuery('#search').on('input', function() {
-    var search = jQuery('#search').val();
-    search = search.toLowerCase().replace('-', '').replace(' ', '');
-    var movies_filtered = {};
 
-    var searchMovies = function(m) {
-        for (var name in m) {
-            if (m.hasOwnProperty(name)) {
-                var currname = name;
-                currname = currname.toLowerCase().replace('-', '').replace(' ', '');
-                if (currname.indexOf(search) != -1) {
-                    movies_filtered[name] = m[name];
+var handleSearch = function() {
+        jQuery('#search').on('input', function() {
+        var search = jQuery('#search').val();
+        search = search.toLowerCase().replace('-', '').replace(' ', '');
+        var movies_filtered = {};
+
+        var searchMovies = function(m) {
+            for (var name in m) {
+                if (m.hasOwnProperty(name)) {
+                    var currname = name;
+                    currname = currname.toLowerCase().replace('-', '').replace(' ', '');
+                    if (currname.indexOf(search) != -1) {
+                        movies_filtered[name] = m[name];
+                    }
                 }
             }
         }
-    }
-    searchMovies(movies);
-    h = display2(movies_filtered);
-    $("#x").html(h);
-});
+        searchMovies(movies);
+        h = display2(movies_filtered);
+        $("#x").html(h);
+    });
+};
+
+$(document).ready(function() {
+// var imgError = function(image) {
+//     image.onerror = "";
+//     image.src = "/img/posters/noposter.jpg";
+//     return true;
+// }
+// imgError();
+// onerror="myFunction();"
+
+// function showAlt(){$(this).replaceWith(this.alt)};
+// function addShowAlt(selector){$(selector).error(showAlt).attr("src", $(selector).src)};
+// addShowAlt("img");
+
+    getData();
+    handleSearch();
 });
