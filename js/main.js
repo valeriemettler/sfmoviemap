@@ -181,18 +181,6 @@ var handleSearch = function() {
 };
 
 $(document).ready(function() {
-// var imgError = function(image) {
-//     image.onerror = "";
-//     image.src = "/img/posters/noposter.jpg";
-//     return true;
-// }
-// imgError();
-// onerror="myFunction();"
-
-// function showAlt(){$(this).replaceWith(this.alt)};
-// function addShowAlt(selector){$(selector).error(showAlt).attr("src", $(selector).src)};
-// addShowAlt("img");
-
     getData();
     handleSearch();
 });
