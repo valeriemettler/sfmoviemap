@@ -1,7 +1,5 @@
 var movies = {};
-var abc = [];
 var oldmarker;
-
 var map;
 var geocoder;
 
