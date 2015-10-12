@@ -14,9 +14,6 @@ function initMap() {
 
     geocoder = new google.maps.Geocoder();
 
-    document.getElementById('submit').addEventListener('click', function() {
-        geocodeAddress_manual(geocoder, map);
-    });
 }
 
 function geocodeAddress_manual(geocoder, resultsMap) {
