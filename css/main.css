@@ -6,6 +6,18 @@ img{
     font-size: 12px;
     font-style: bold;
 }
+#portfolio-link {
+    font-size: 14px;
+    text-decoration: none;
+
+}
+a {
+    color: black;
+}
+a:hover, a:active, a:focus {
+   text-decoration: none;
+   color: blue;
+}
 
 /* Fixed Left Column */
 ul.nav-pills {

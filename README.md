@@ -2,7 +2,7 @@
 
 A map to find the locations of your favorite films that were shot in SF!
 
-Link to live app at [moviemap.xyz](http://moviemap.xyz)
+Link to live app at [moviemap.vmlabs.xyz](http://moviemap.vmlabs.xyz)
 
 Built with JavaScript and jQuery.
 
